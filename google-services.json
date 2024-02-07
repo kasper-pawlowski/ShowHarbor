@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "896945858773",
+    "project_id": "showharbor",
+    "storage_bucket": "showharbor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896945858773:android:568fc73a7dcf75c8151a5c",
+        "android_client_info": {
+          "package_name": "com.firebase.showharbor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896945858773-a6jrsav8lujq4vmpe25co109i03quuii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firebase.showharbor",
+            "certificate_hash": "5b3d7ba6852976c433aa661cb44847c845b297e2"
+          }
+        },
+        {
+          "client_id": "896945858773-gmlv8be4qiknrs6509haspmf7ne2uii1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGWnXmI1g-FTplwWKm7GLpI3ap2rZLqIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896945858773-gmlv8be4qiknrs6509haspmf7ne2uii1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
