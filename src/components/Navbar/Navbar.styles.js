@@ -1,10 +1,44 @@
-import styled from 'styled-components/native';
-import { Text, View } from 'react-native';
+import { BlurView } from 'expo-blur';
+import { Image } from 'expo-image';
+import { Pressable, Text, View } from 'react-native';
+import styled from 'styled-components';
 
-export const Wrapper = styled.View`
-    background: red;
+export const Wrapper = styled(View)`
     width: 100%;
-    height: 20px;
     position: absolute;
     bottom: 0;
+    overflow: hidden;
+    /* border-top-right-radius: 20px; */
+    /* border-top-left-radius: 20px; */
+    /* border-radius: 100px; */
+    background-color: #0000007d;
+    z-index: 1;
+`;
+
+export const Blur = styled(BlurView)`
+    padding-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+`;
+
+export const NavPressable = styled(Pressable)`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 18px 0px;
+`;
+
+export const Icon = styled(Image)`
+    width: 24px;
+    height: 24px;
+`;
+
+export const Label = styled(Text)`
+    ${(props) => props.theme.text};
+    font-size: 13px;
+    color: ${(props) => (props.route === props.label ? props.theme.colors.main : props.theme.colors.grey)};
 `;

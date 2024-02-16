@@ -2,6 +2,7 @@ export default {
     expo: {
         name: 'ShowHarbor',
         slug: 'showharbor',
+        scheme: 'showharbor',
         version: '1.0.0',
         orientation: 'portrait',
         icon: './assets/icon.png',
@@ -11,7 +12,21 @@ export default {
             resizeMode: 'cover',
             backgroundColor: '#000000',
         },
-        plugins: ['@react-native-google-signin/google-signin'],
+        plugins: [
+            '@react-native-google-signin/google-signin',
+            'expo-router',
+            [
+                'expo-font',
+                {
+                    fonts: [
+                        './assets/fonts/PPNeueMachina-PlainLight.otf',
+                        './assets/fonts/PPNeueMachina-PlainRegular.otf',
+                        './assets/fonts/PPNeueMachina-PlainUltrabold.otf',
+                    ],
+                },
+            ],
+        ],
+
         assetBundlePatterns: ['**/*'],
         ios: {
             supportsTablet: true,
