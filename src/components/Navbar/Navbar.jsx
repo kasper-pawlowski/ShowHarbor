@@ -9,7 +9,9 @@ const Navbar = ({ route }) => {
         <Wrapper
             onLayout={(event) => {
                 const { height } = event.nativeEvent.layout;
-                setNavbarDimensions(height);
+                setNavbarDimensions({
+                    height: height,
+                });
             }}
         >
             <Blur intensity={0} tint="dark" experimentalBlurMethod="dimezisBlurView">

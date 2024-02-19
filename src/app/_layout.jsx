@@ -8,6 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as NavigationBar from 'expo-navigation-bar';
 import { useCallback, useEffect } from 'react';
 import { UserAuthContextProvider } from '@/context/AuthContext';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 SplashScreen.preventAutoHideAsync();
 
 const StyledView = styled.View`
@@ -46,17 +47,19 @@ const Root = () => {
     }
 
     return (
-        <UserAuthContextProvider>
-            <ThemeProvider theme={theme}>
-                <SafeAreaProvider>
-                    {/* <StyledView style={{ paddingTop: insets.top }} onLayout={onLayoutRootView}> */}
-                    <StyledView onLayout={onLayoutRootView}>
-                        <Slot />
-                    </StyledView>
-                    <StatusBar style="auto" />
-                </SafeAreaProvider>
-            </ThemeProvider>
-        </UserAuthContextProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <UserAuthContextProvider>
+                <ThemeProvider theme={theme}>
+                    <SafeAreaProvider>
+                        {/* <StyledView style={{ paddingTop: insets.top }} onLayout={onLayoutRootView}> */}
+                        <StyledView onLayout={onLayoutRootView}>
+                            <Slot />
+                        </StyledView>
+                        <StatusBar style="auto" />
+                    </SafeAreaProvider>
+                </ThemeProvider>
+            </UserAuthContextProvider>
+        </GestureHandlerRootView>
     );
 };
 
