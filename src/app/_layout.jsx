@@ -49,7 +49,8 @@ const Root = () => {
         <UserAuthContextProvider>
             <ThemeProvider theme={theme}>
                 <SafeAreaProvider>
-                    <StyledView style={{ paddingTop: insets.top }} onLayout={onLayoutRootView}>
+                    {/* <StyledView style={{ paddingTop: insets.top }} onLayout={onLayoutRootView}> */}
+                    <StyledView onLayout={onLayoutRootView}>
                         <Slot />
                     </StyledView>
                     <StatusBar style="auto" />

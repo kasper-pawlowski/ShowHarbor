@@ -1,10 +1,18 @@
 import { router } from 'expo-router';
 import { Blur, NavPressable, Label, Wrapper, Icon } from './Navbar.styles';
+import { useDimensions } from '@/context/DimensionsContext';
 
 const Navbar = ({ route }) => {
+    const { setNavbarDimensions } = useDimensions();
+
     return (
-        <Wrapper>
-            <Blur intensity={100} tint="dark" experimentalBlurMethod="dimezisBlurView">
+        <Wrapper
+            onLayout={(event) => {
+                const { height } = event.nativeEvent.layout;
+                setNavbarDimensions(height);
+            }}
+        >
+            <Blur intensity={0} tint="dark" experimentalBlurMethod="dimezisBlurView">
                 <NavPressable onPress={() => router.push('/')} android_ripple={{ color: '#00ff22' }}>
                     <Icon
                         tintColor={route === 'Watchlist' ? '#37D67A' : '#848484'}

@@ -1,30 +1,15 @@
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { SearchIcon, SearchInput, SearchInputBlur, SearchInputWrapper, Wrapper } from './index.styles';
+import { Wrapper } from './index.styles';
+import ShowList from '@/components/ShowList/ShowList';
+import { useDimensions } from '@/context/DimensionsContext';
 
 const Search = () => {
-    const [searchValue, setSearchValue] = useState('');
-
-    useEffect(() => {
-        console.log(searchValue);
-    }, [searchValue]);
-
-    return (
-        <Wrapper>
-            <SearchInputWrapper>
-                <SearchInputBlur>
-                    <SearchIcon cachePolicy="memory" source={require('../../../assets/icons/search-grey-thin.svg')} />
-                    <SearchInput
-                        value={searchValue}
-                        onChangeText={(e) => setSearchValue(e)}
-                        placeholder="Search movie or TV show..."
-                        placeholderTextColor="#848484"
-                        autoFocus
-                    ></SearchInput>
-                </SearchInputBlur>
-            </SearchInputWrapper>
-        </Wrapper>
-    );
+    return <ShowList />;
 };
 
 export default Search;
+
+{
+    /* <ShowList /> */
+}

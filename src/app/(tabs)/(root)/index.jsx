@@ -12,7 +12,11 @@ const StyledText = styled(Text)`
 `;
 
 const Watchlist = () => {
-    return <Wrapper></Wrapper>;
+    return (
+        <Wrapper>
+            <StyledText>Watchlist</StyledText>
+        </Wrapper>
+    );
 };
 
 export default Watchlist;
