@@ -9,6 +9,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import { useCallback, useEffect } from 'react';
 import { UserAuthContextProvider } from '@/context/AuthContext';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import axios from 'axios';
 SplashScreen.preventAutoHideAsync();
 
 const StyledView = styled.View`
@@ -19,6 +20,10 @@ const StyledView = styled.View`
 const Root = () => {
     const insets = useSafeAreaInsets();
     const location = usePathname();
+
+    axios.defaults.headers.common = {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMGYwMWVkMDc3ODA3MTQwMDU5M2YyOTc2YmJmNzc4MiIsInN1YiI6IjVmOGQ1Y2E0ZjhhZWU4MDAzNmJkYTc5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nLzXE0m4S4EP-_85vFryaxr8yIN63PEIWiOYBBqNKJ4`,
+    };
 
     useEffect(() => {
         const ustawPozycje = async () => {

@@ -8,10 +8,11 @@ export function DimenstionsProvider({ children }) {
     const [searchInputDimensions, setSearchInputDimensions] = useState();
     const [switcherDimensions, setSwitcherDimensions] = useState();
     const [searchValue, setSearchValue] = useState('');
+    const [scrollOffsetY, setScrollOffsetY] = useState(0);
 
-    // useEffect(() => {
-    //     console.log('headerDimensions: ' + headerDimensions?.height);
-    // }, [headerDimensions]);
+    useEffect(() => {
+        console.log('headerDimensions: ' + headerDimensions?.height);
+    }, [headerDimensions]);
 
     return (
         <dimensionsContext.Provider
@@ -26,6 +27,8 @@ export function DimenstionsProvider({ children }) {
                 setSearchInputDimensions,
                 switcherDimensions,
                 setSwitcherDimensions,
+                scrollOffsetY,
+                setScrollOffsetY,
             }}
         >
             {children}

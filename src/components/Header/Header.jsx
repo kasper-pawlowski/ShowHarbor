@@ -18,7 +18,7 @@ import Switcher from '../Swticher/Switcher';
 const Header = ({ route }) => {
     const { user } = useUserAuth();
     const [navigationHeaderDimensions, setNavigationHeaderDimensions] = useState();
-    const { searchInputDimensions, switcherDimensions, setHeaderDimensions } = useDimensions();
+    const { searchInputDimensions, switcherDimensions, setHeaderDimensions, scrollOffsetY } = useDimensions();
 
     const height = useSharedValue(navigationHeaderDimensions?.height);
 
@@ -55,21 +55,21 @@ const Header = ({ route }) => {
     };
 
     return (
-        <Wrapper onLayout={headerLayoutHandler} style={{ height }}>
-            <Blur intensity={100} tint="dark" experimentalBlurMethod="dimezisBlurView">
-                <NavigationHeader onLayout={navigationLayoutHandler}>
-                    <Link href="/">
-                        <Logo source={require('../../assets/icons/logo.svg')} />
-                    </Link>
-                    <Location>{route}</Location>
-                    <Link href="/profile">
-                        <Avatar source={user.photo} />
-                    </Link>
-                </NavigationHeader>
+        // <Wrapper onLayout={headerLayoutHandler} style={{ height }}>
+        <Wrapper>
+            <Blur blurAmount={100} />
+            <NavigationHeader onLayout={navigationLayoutHandler}>
+                <Link href="/">
+                    <Logo source={require('../../assets/icons/logo.svg')} />
+                </Link>
+                <Location>{route}</Location>
+                <Link href="/profile">
+                    <Avatar source={user.photo} />
+                </Link>
+            </NavigationHeader>
 
-                {(route === 'Watchlist' || route === 'Watched') && <Switcher route={route} />}
-                {route === 'Search' && <SearchInput />}
-            </Blur>
+            {(route === 'Watchlist' || route === 'Watched') && <Switcher route={route} />}
+            {route === 'Search' && <SearchInput />}
         </Wrapper>
     );
 };

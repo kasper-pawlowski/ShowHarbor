@@ -25,10 +25,10 @@ export function UserAuthContextProvider({ children }) {
         //         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
         //             // user has not signed in yet
         //             setError('noUser');
-        //             console.log('user has not signed in yet');
+        // console.log('user has not signed in yet');
         //         } else {
         //             // some other error
-        //             console.log('some other error');
+        // console.log('some other error');
         //         }
         //     }
         // };

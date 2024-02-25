@@ -29,6 +29,7 @@ const SignIn = () => {
 
     return (
         <StyledView>
+            <GradientImage source={require('../../assets/images/sign-in_gradient.png')} />
             <LogoWrapper>
                 <StyledLogo source={require('../../assets/icons/logo.svg')} />
                 <StyledLogoText>ShowHarbor</StyledLogoText>
@@ -37,7 +38,6 @@ const SignIn = () => {
                 <StyledGoogleIcon source={require('../../assets/icons/google.png')} />
                 <SignInButtonText>Sign in with Google</SignInButtonText>
             </SignInButton>
-            <GradientImage source={require('../../assets/images/sign-in_gradient.png')} />
         </StyledView>
     );
 };

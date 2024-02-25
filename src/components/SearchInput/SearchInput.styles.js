@@ -1,4 +1,3 @@
-import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
 import { TextInput, View } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -12,17 +11,13 @@ export const Container = styled(Animated.View)`
 export const Wrapper = styled(View)`
     width: 100%;
     gap: 10px;
-    /* background-color: #ffffff15; */
-    border-radius: 10px;
-    border: 1.5px solid #ffffff44;
+    /* background-color: #37d67921; */
+    border-radius: 100px;
+    border: 1.5px solid #ffffff27;
     overflow: hidden;
-`;
-
-export const Blur = styled(BlurView)`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;
 `;
 
 export const Icon = styled(Image)`

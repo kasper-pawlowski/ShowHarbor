@@ -24,6 +24,7 @@ export const LogoWrapper = styled(View)`
     align-items: center;
     flex-direction: column;
     gap: 30px;
+    z-index: 1;
 `;
 
 export const StyledLogo = styled(Image)`

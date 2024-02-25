@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 import { Image } from 'expo-image';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import Animated from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export const ItemWrapper = styled(Animated.View)`
     flex: 1;
+    /* width: 100%; */
     height: 250px;
-    /* background-color: green; */
+    background-color: green;
     border-radius: 10px;
     position: relative;
     overflow: hidden;
-    margin-right: ${({ index }) => (index % 2 !== 0 ? '5px' : 0)};
-    margin-left: ${({ index }) => (index % 2 === 0 ? '5px' : 0)};
+    margin-right: ${({ index }) => (index % 2 === 0 ? '5px' : 0)};
+    margin-left: ${({ index }) => (index % 2 !== 0 ? '5px' : 0)};
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

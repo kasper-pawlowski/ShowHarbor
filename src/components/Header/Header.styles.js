@@ -1,8 +1,9 @@
-import { BlurView } from 'expo-blur';
+// import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
 import { Pressable, Text, TextInput, View } from 'react-native';
 import styled from 'styled-components';
 import Animated from 'react-native-reanimated';
+import { BlurView } from '@react-native-community/blur';
 
 export const Wrapper = styled(Animated.View)`
     width: 100%;
@@ -10,19 +11,18 @@ export const Wrapper = styled(Animated.View)`
     top: 0;
     overflow: hidden;
     /* background-color: #0000007d; */
-    z-index: 1;
-    /* border: 1px solid green; */
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px 0px 16px;
 `;
 
 export const Blur = styled(BlurView)`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    /* gap: 20px; */
-    /* background-color: green; */
-
-    padding: 0px 16px 0px 16px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 `;
 
 export const NavigationHeader = styled(View)`
