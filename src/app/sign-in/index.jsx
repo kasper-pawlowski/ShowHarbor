@@ -1,4 +1,4 @@
-import { Redirect, router } from 'expo-router';
+import { Redirect, router, usePathname } from 'expo-router';
 import {
     GradientImage,
     LogoWrapper,
@@ -8,11 +8,13 @@ import {
     StyledLogo,
     StyledLogoText,
     StyledView,
-} from './sign-in.styled';
+} from './index.styled';
 import { useUserAuth } from '@/context/AuthContext';
+import { useEffect } from 'react';
 
 const SignIn = () => {
     const { signIn, user } = useUserAuth();
+    const location = usePathname();
 
     const handleSignIn = async () => {
         try {

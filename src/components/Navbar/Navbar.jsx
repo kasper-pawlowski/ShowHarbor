@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { Blur, NavPressable, Label, Wrapper, Icon } from './Navbar.styles';
 import { useDimensions } from '@/context/DimensionsContext';
+import { useEffect } from 'react';
 
 const Navbar = ({ route }) => {
     const { setNavbarDimensions } = useDimensions();

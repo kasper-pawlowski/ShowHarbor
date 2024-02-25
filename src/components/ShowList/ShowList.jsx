@@ -11,10 +11,6 @@ const ShowList = ({ data }) => {
         return;
     }
 
-    useEffect(() => {
-        console.log('data: ' + data);
-    }, [data]);
-
     return (
         <FlashList
             // onScroll={(e) => setScrollOffsetY(e.nativeEvent.contentOffset.y)}

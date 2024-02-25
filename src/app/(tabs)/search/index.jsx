@@ -29,7 +29,7 @@ const Search = () => {
 
                 setData({ ...response.data, results: filteredResults });
                 // setData(filteredResults);
-                console.log(filteredResults);
+                // console.log(filteredResults);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setError('Cos nie pyklo');
@@ -56,8 +56,6 @@ const Search = () => {
     }
 
     if (data.results) {
-        console.log('data');
-
         return <ShowList data={data.results} />;
     }
 

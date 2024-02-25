@@ -20,8 +20,5 @@ export const StyledView = styled(Animated.View)`
     background-color: #252b28;
     padding: 20px;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 20px;
 `;

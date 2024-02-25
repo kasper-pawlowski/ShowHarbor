@@ -10,10 +10,6 @@ export function DimenstionsProvider({ children }) {
     const [searchValue, setSearchValue] = useState('');
     const [scrollOffsetY, setScrollOffsetY] = useState(0);
 
-    useEffect(() => {
-        console.log('headerDimensions: ' + headerDimensions?.height);
-    }, [headerDimensions]);
-
     return (
         <dimensionsContext.Provider
             value={{

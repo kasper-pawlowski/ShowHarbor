@@ -2,20 +2,12 @@ import Navbar from '@/components/Navbar/Navbar';
 import { useUserAuth } from '@/context/AuthContext';
 import { Redirect, Slot, Stack, Tabs, router, usePathname } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
-import { Button } from 'react-native';
+import { Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Image } from 'expo-image';
 import styled from 'styled-components';
 import Header from '@/components/Header/Header';
 import { DimenstionsProvider } from '@/context/DimensionsContext';
-
-const Lila = styled(Image)`
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
-`;
 
 const Blured = styled(Image)`
     z-index: -2;
@@ -30,11 +22,7 @@ const Blured = styled(Image)`
 const AppLayout = () => {
     const { user } = useUserAuth();
     const location = usePathname();
-    const [route, setRoute] = useState('');
-
-    useEffect(() => {
-        console.log('Route: ' + route);
-    }, [route]);
+    const [route, setRoute] = useState('Watchlist');
 
     useEffect(() => {
         switch (location) {
@@ -51,27 +39,26 @@ const AppLayout = () => {
                 setRoute('Profile');
                 break;
             default:
-                setRoute('');
+                setRoute('Watchlist');
                 break;
         }
+
+        () => console.log('asdasdasda');
     }, [location]);
 
     const bluredComponent = useMemo(() => <Blured cachePolicy="memory" source={require('../../assets/images/blured.png')} />, []);
-    const lilaComponent = useMemo(() => <Lila cachePolicy="none" source={require('../../assets/images/lila.jpg')} />, []);
 
     if (!user) {
-        return <Redirect href="/(auth)/sign-in" />;
+        return <Redirect href="/sign-in" />;
     }
 
-    if (route)
-        // tutaj cos tego
+    if (user && route !== undefined)
         return (
             <DimenstionsProvider>
-                <Header route={route} setRoute={setRoute} />
                 {bluredComponent}
                 <Slot />
+                <Header route={route} />
                 <Navbar route={route} />
-                {/* {lilaComponent} */}
             </DimenstionsProvider>
         );
 };

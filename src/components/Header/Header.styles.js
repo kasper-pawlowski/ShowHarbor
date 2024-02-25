@@ -9,6 +9,8 @@ export const Wrapper = styled(Animated.View)`
     width: 100%;
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     overflow: hidden;
     /* background-color: #0000007d; */
     z-index: 5;
