@@ -12,6 +12,7 @@ const Search = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,18 +22,16 @@ const Search = () => {
                     params: {
                         query: debouncedSearch,
                         language: 'en-US',
+                        page: page,
                     },
                 });
-                const filteredResults = response.data.results.filter(
-                    (item) => item.media_type !== 'person' && item.poster_path !== null
-                );
+                const filteredResults = response.data.results.filter((item) => item.media_type !== 'person' && item.poster_path !== null);
 
                 setData({ ...response.data, results: filteredResults });
                 // setData(filteredResults);
                 // console.log(filteredResults);
             } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('Cos nie pyklo');
+                setError('Error fetching data:', error);
             } finally {
                 setLoading(false);
             }
@@ -44,7 +43,7 @@ const Search = () => {
     if (searchValue.length === 0) return <TempText>No search. to ma sie pojawiac jak z length 0 jescze sie pisze </TempText>;
 
     if (loading) {
-        console.log('loading');
+        // console.log('loading');
 
         return <Text style={{ marginTop: 200, backgroundColor: 'blue' }}>Loading...</Text>;
     }
@@ -55,8 +54,8 @@ const Search = () => {
         return <Text style={{ marginTop: 200, backgroundColor: 'blue' }}>{error}</Text>;
     }
 
-    if (data.results) {
-        return <ShowList data={data.results} />;
+    if (data) {
+        return <ShowList data={data} setPage={setPage} />;
     }
 
     // return loading ? <Text style={{ marginTop: 200 }}>Loading...</Text> : <ShowList />;
