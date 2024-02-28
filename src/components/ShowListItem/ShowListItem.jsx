@@ -1,4 +1,4 @@
-import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { FadeIn, FadeOut, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import {
     GradientOverlay,
     Info,
@@ -19,12 +19,11 @@ const ShowListItem = ({ item, index }) => {
     const [showDetails, setShowDetails] = useState();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-    // useEffect(() => {
-    //     if (showDetails) {
-    //         console.log(showDetails.genres[0]?.name);
-    //     }
-    // }, [showDetails]);
+    const handleImageLoad = () => {
+        setIsImageLoaded(true);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,7 +36,9 @@ const ShowListItem = ({ item, index }) => {
                 console.error('Error fetching data:', error);
                 setError('Cos nie pyklo');
             } finally {
-                setLoading(false);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 500);
             }
         };
 
@@ -80,14 +81,15 @@ const ShowListItem = ({ item, index }) => {
         return date?.split('-')[0];
     };
 
-    if (loading) <PlaceholderItemWrapper index={index} />;
+    if (loading) return <PlaceholderItemWrapper index={index} />;
 
     if (!loading && showDetails)
         return (
             <GestureDetector gesture={longPress}>
-                <ItemWrapper index={index} style={animatedStyles}>
-                    <Poster source={`https://image.tmdb.org/t/p/w342${item.poster_path}`} />
+                <ItemWrapper index={index} style={animatedStyles} entering={FadeIn.duration(200)} exiting={FadeOut.duration(200)}>
+                    <Poster source={`https://image.tmdb.org/t/p/w342${item.poster_path}`} recyclingKey={`${item.id}`} onLoad={handleImageLoad} />
                     <GradientOverlay colors={['transparent', '#000000dd']} locations={[0, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} />
+
                     <Title>{item.name ? item.name : item.title ? item.title : 'shit'}</Title>
                     <InfoWrapper>
                         {showDetails.genres.length ? <InfoText>{showDetails.genres[0].name}</InfoText> : <></>}

@@ -75,7 +75,7 @@ export const RatingText = styled(Text)`
 export const PlaceholderItemWrapper = styled(Animated.View)`
     flex: 1;
     height: 250px;
-    background-color: green;
+    background-color: #161515;
     border-radius: 10px;
     position: relative;
     overflow: hidden;

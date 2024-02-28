@@ -9,7 +9,7 @@ export const Wrapper = styled(View)`
     position: absolute;
     bottom: 0;
     overflow: hidden;
-    background-color: #0000007d;
+    /* background-color: #0000007d; */
     z-index: 5;
     padding-bottom: 14px;
     width: 100%;
