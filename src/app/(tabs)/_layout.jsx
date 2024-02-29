@@ -57,7 +57,7 @@ const AppLayout = () => {
             <DimenstionsProvider>
                 {bluredComponent}
                 <Slot />
-                <Header route={route} />
+                {/* <Header route={route} /> */}
                 <Navbar route={route} />
             </DimenstionsProvider>
         );
