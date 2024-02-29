@@ -13,7 +13,7 @@ const AppLayout = () => {
         return (
             <>
                 <Slot />
-                <Navbar />
+                {/* <Navbar /> */}
             </>
         );
 };

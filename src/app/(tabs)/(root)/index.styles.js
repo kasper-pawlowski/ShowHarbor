@@ -10,3 +10,8 @@ export const Wrapper = styled(View)`
     justify-content: center;
     background-color: #d8d8d8;
 `;
+
+export const Blur = styled(BlurView)`
+    width: 100px;
+    height: 100px;
+`;

@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 import styled from 'styled-components';
+import { BlurView } from '@react-native-community/blur';
 
 export const Wrapper = styled(View)`
     position: absolute;
@@ -10,5 +11,11 @@ export const Wrapper = styled(View)`
     align-items: center;
     justify-content: center;
     padding: 20px 0 40px 0;
-    background-color: #0505055d;
+    background-color: #8b151565;
+    border: 1px solid green;
+`;
+
+export const Blur = styled(BlurView)`
+    width: 100px;
+    height: 100px;
 `;

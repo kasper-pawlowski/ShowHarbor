@@ -1,11 +1,11 @@
 import { BlurView } from '@react-native-community/blur';
-import { Wrapper } from './Navbar.styles';
+import { Blur, Wrapper } from './Navbar.styles';
 import { Text } from 'react-native';
 
 const Navbar = () => {
     return (
         <Wrapper>
-            <BlurView blurAmount={100} />
+            <Blur blurAmount={100} blurType={'light'} />
             <Text>asdasd</Text>
         </Wrapper>
     );
