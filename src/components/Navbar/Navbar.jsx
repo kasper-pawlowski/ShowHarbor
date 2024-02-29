@@ -15,9 +15,10 @@ const Navbar = ({ route }) => {
                     height: height,
                 });
             }}
+            tint="dark"
+            intensity={100}
+            experimentalBlurMethod
         >
-            {/* <Blur blurAmount={100} /> */}
-            <BlurView blurAmount={100} />
             <NavPressable onPress={() => router.push('/')} android_ripple={{ color: '#00ff22' }}>
                 <Icon tintColor={route === 'Watchlist' ? '#37D67A' : '#848484'} source={require('../../assets/icons/save-grey.svg')} />
                 <Label label="Watchlist" route={route}>

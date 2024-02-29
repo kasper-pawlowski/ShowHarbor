@@ -19,6 +19,16 @@ const Blured = styled(Image)`
     right: 0;
 `;
 
+const Poster = styled(Image)`
+    z-index: -10;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+`;
+
 const AppLayout = () => {
     const { user } = useUserAuth();
     const location = usePathname();
@@ -47,6 +57,7 @@ const AppLayout = () => {
     }, [location]);
 
     const bluredComponent = useMemo(() => <Blured cachePolicy="memory" source={require('../../assets/images/blured.png')} />, []);
+    const poster = useMemo(() => <Poster cachePolicy="memory" source={require('../../assets/images/poster.png')} />, []);
 
     if (!user) {
         return <Redirect href="/sign-in" />;
@@ -55,7 +66,7 @@ const AppLayout = () => {
     if (user && route !== undefined)
         return (
             <DimenstionsProvider>
-                {bluredComponent}
+                {poster}
                 <Slot />
                 {/* <Header route={route} /> */}
                 <Navbar route={route} />

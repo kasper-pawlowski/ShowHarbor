@@ -1,10 +1,10 @@
 // import { BlurView } from 'expo-blur';
+import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
 import { Pressable, Text, View } from 'react-native';
 import styled from 'styled-components';
-import { BlurView } from '@react-native-community/blur';
 
-export const Wrapper = styled(View)`
+export const Wrapper = styled(BlurView)`
     /* width: 100%; */
     position: absolute;
     bottom: 0;
@@ -20,10 +20,8 @@ export const Wrapper = styled(View)`
 
 // export const Blur = styled(BlurView)`
 //     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     right: 0;
-//     left: 0;
+//     width: 100px;
+//     height: 100px;
 // `;
 
 export const NavPressable = styled(Pressable)`
