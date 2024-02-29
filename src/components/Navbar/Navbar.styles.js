@@ -18,14 +18,6 @@ export const Wrapper = styled(View)`
     flex-direction: row;
 `;
 
-// export const Blur = styled(BlurView)`
-//     padding-bottom: 14px;
-//     width: 100%;
-//     display: flex;
-//     justify-content: space-around;
-//     flex-direction: row;
-// `;
-
 export const Blur = styled(BlurView)`
     position: absolute;
     top: 0;

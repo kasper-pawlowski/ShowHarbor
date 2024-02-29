@@ -9,6 +9,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import { useCallback, useEffect } from 'react';
 import { UserAuthContextProvider } from '@/context/AuthContext';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { PaperProvider } from 'react-native-paper';
 import axios from 'axios';
 SplashScreen.preventAutoHideAsync();
 
@@ -52,19 +53,21 @@ const Root = () => {
     }
 
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <UserAuthContextProvider>
-                <ThemeProvider theme={theme}>
-                    <SafeAreaProvider>
-                        {/* <StyledView style={{ paddingTop: insets.top }} onLayout={onLayoutRootView}> */}
-                        <StyledView onLayout={onLayoutRootView}>
-                            <Slot />
-                        </StyledView>
-                        <StatusBar style="auto" />
-                    </SafeAreaProvider>
-                </ThemeProvider>
-            </UserAuthContextProvider>
-        </GestureHandlerRootView>
+        <PaperProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <UserAuthContextProvider>
+                    <ThemeProvider theme={theme}>
+                        <SafeAreaProvider>
+                            {/* <StyledView style={{ paddingTop: insets.top }} onLayout={onLayoutRootView}> */}
+                            <StyledView onLayout={onLayoutRootView}>
+                                <Slot />
+                            </StyledView>
+                            <StatusBar style="auto" />
+                        </SafeAreaProvider>
+                    </ThemeProvider>
+                </UserAuthContextProvider>
+            </GestureHandlerRootView>
+        </PaperProvider>
     );
 };
 

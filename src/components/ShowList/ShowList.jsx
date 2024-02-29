@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { useDimensions } from '@/context/DimensionsContext';
 import { FlashList } from '@shopify/flash-list';
 import ShowListItem from '../ShowListItem/ShowListItem';
 import axios from 'axios';
 import useDebounce from '@/hooks/useDebounce';
 import styled from 'styled-components';
-import { LoadingText, LoadingWrapper } from './ShowListy.style';
+import { LoadMoreText, LoadMoreWrapper, LoadingWrapper } from './ShowListy.style';
 import { FadeIn, FadeOut } from 'react-native-reanimated';
 
 const ShowList = () => {
@@ -42,10 +42,14 @@ const ShowList = () => {
         fetchData();
     }, [debouncedSearch]);
 
+    const handleLoadMore = async () => {
+        console.log('load more');
+    };
+
     if (loading) {
         return (
             <LoadingWrapper entering={FadeIn.duration(200)}>
-                <LoadingText>Loading...</LoadingText>
+                <ActivityIndicator size="large" color="#37D67A" />
             </LoadingWrapper>
         );
     }
@@ -72,13 +76,15 @@ const ShowList = () => {
                         paddingTop: headerDimensions?.height + 20,
                         paddingBottom: navbarDimensions?.height + 20,
                     }}
-                    // ListFooterComponent={() =>
-                    //     data.results.length > 0 && (
-                    //         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
-                    //             <Text style={{ color: 'black' }}>Footer</Text>
-                    //         </View>
-                    //     )
-                    // }
+                    ListFooterComponent={() =>
+                        data?.results?.length > 0 && (
+                            <View>
+                                <LoadMoreWrapper onPress={handleLoadMore} android_ripple={{ color: '#15dd68' }}>
+                                    <LoadMoreText>Load more...</LoadMoreText>
+                                </LoadMoreWrapper>
+                            </View>
+                        )
+                    }
                     // ListEmptyComponent={() => (
                     //     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
                     //         <Text style={{ color: 'black' }}>No found</Text>
