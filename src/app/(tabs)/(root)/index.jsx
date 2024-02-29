@@ -13,7 +13,7 @@ import { Button, Text, TouchableRipple } from 'react-native-paper';
 const Watchlist = () => {
     return (
         <Wrapper>
-            <Button dark mode="contained-tonal" onPress={() => console.log('Pressed')} rippleColor={'red'}>
+            <Button dark mode="contained-tonal" onPress={() => console.log('Pressed')} rippleColor={'red'} style={{ zIndex: 999 }}>
                 Press me
             </Button>
         </Wrapper>

@@ -1,8 +1,7 @@
 import { router } from 'expo-router';
-import { Blur, NavPressable, Label, Wrapper, Icon } from './Navbar.styles';
+import { Blur, NavPressable, Label, Wrapper, Icon, BlurWrapper } from './Navbar.styles';
 import { useDimensions } from '@/context/DimensionsContext';
 import { useEffect } from 'react';
-import { BlurView } from '@react-native-community/blur';
 
 const Navbar = ({ route }) => {
     const { setNavbarDimensions } = useDimensions();
@@ -15,10 +14,11 @@ const Navbar = ({ route }) => {
                     height: height,
                 });
             }}
-            tint="dark"
-            intensity={100}
-            experimentalBlurMethod
         >
+            <BlurWrapper>
+                <Blur blurAmount={50}></Blur>
+            </BlurWrapper>
+
             <NavPressable onPress={() => router.push('/')} android_ripple={{ color: '#00ff22' }}>
                 <Icon tintColor={route === 'Watchlist' ? '#37D67A' : '#848484'} source={require('../../assets/icons/save-grey.svg')} />
                 <Label label="Watchlist" route={route}>
