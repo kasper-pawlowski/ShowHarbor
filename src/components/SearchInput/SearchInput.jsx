@@ -7,7 +7,7 @@ const SearchInput = () => {
     const { searchValue, setSearchValue } = useDimensions();
 
     useEffect(() => {
-        setSearchValue('');
+        // setSearchValue('');
     }, []);
 
     return (

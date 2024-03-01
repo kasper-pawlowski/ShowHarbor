@@ -1,15 +1,18 @@
-import { FadeIn, FadeOut, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { GradientOverlay, InfoText, InfoWrapper, ItemWrapper, Poster, RatingText, RatingWrapper, Title } from './ShowListItem.styles';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
 import ShowListItemPlaceholder from '@/components/ShowListItemPlaceholder/ShowListItemPlaceholder';
 import axios from 'axios';
+import { router } from 'expo-router';
+import { useDimensions } from '@/context/DimensionsContext';
 
 const ShowListItem = ({ item, index }) => {
     const [showDetails, setShowDetails] = useState();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const { searchValue, setSearchValue } = useDimensions();
 
     const handleImageLoad = () => {
         setIsImageLoaded(true);
@@ -38,14 +41,23 @@ const ShowListItem = ({ item, index }) => {
     const pressed = useSharedValue(false);
 
     const animatedStyles = useAnimatedStyle(() => ({
-        transform: [{ scale: withTiming(pressed.value ? 0.9 : 1) }],
+        transform: [{ scale: withTiming(pressed.value ? 0.9 : 1, { duration: 200 }) }],
     }));
 
-    const longPress = Gesture.LongPress()
-        .onBegin(() => {
-            pressed.value = true;
-        })
+    const longPressHandler = () => {
+        console.log('Open actionsheet');
+    };
 
+    const tapHandler = () => {
+        router.push({ pathname: '/show', params: { showDetails, searchValue } });
+    };
+
+    const longPress = Gesture.LongPress()
+        .minDuration(200)
+        .onStart(() => {
+            pressed.value = true;
+            runOnJS(longPressHandler)();
+        })
         .onFinalize(() => {
             pressed.value = false;
         });
@@ -53,6 +65,10 @@ const ShowListItem = ({ item, index }) => {
     useEffect(() => {
         pressed.value = false;
     }, [item.id, pressed]);
+
+    const tap = Gesture.Tap().onStart(() => {
+        runOnJS(tapHandler)();
+    });
 
     const formatRuntime = (runtime) => {
         const hours = Math.floor(runtime / 60);
@@ -71,11 +87,13 @@ const ShowListItem = ({ item, index }) => {
         return date?.split('-')[0];
     };
 
+    const composed = Gesture.Race(tap, longPress);
+
     if (loading) return <ShowListItemPlaceholder index={index} />;
 
     if (!loading && showDetails)
         return (
-            <GestureDetector gesture={longPress}>
+            <GestureDetector gesture={composed}>
                 <ItemWrapper index={index} style={animatedStyles} entering={FadeIn.duration(200)} exiting={FadeOut.duration(200)}>
                     <Poster source={`https://image.tmdb.org/t/p/w342${item.poster_path}`} recyclingKey={`${item.id}`} onLoad={handleImageLoad} />
                     <GradientOverlay colors={['transparent', '#000000dd']} locations={[0, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} />

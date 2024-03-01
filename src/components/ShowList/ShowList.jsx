@@ -85,11 +85,6 @@ const ShowList = () => {
                             </View>
                         )
                     }
-                    // ListEmptyComponent={() => (
-                    //     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
-                    //         <Text style={{ color: 'black' }}>No found</Text>
-                    //     </View>
-                    // )}
                 />
             </View>
         );
