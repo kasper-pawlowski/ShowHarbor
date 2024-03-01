@@ -1,18 +1,8 @@
 import { FadeIn, FadeOut, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import {
-    GradientOverlay,
-    Info,
-    InfoText,
-    InfoWrapper,
-    ItemWrapper,
-    PlaceholderItemWrapper,
-    Poster,
-    RatingText,
-    RatingWrapper,
-    Title,
-} from './ShowListItem.styles';
+import { GradientOverlay, InfoText, InfoWrapper, ItemWrapper, Poster, RatingText, RatingWrapper, Title } from './ShowListItem.styles';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
+import ShowListItemPlaceholder from '@/components/ShowListItemPlaceholder/ShowListItemPlaceholder';
 import axios from 'axios';
 
 const ShowListItem = ({ item, index }) => {
@@ -81,7 +71,7 @@ const ShowListItem = ({ item, index }) => {
         return date?.split('-')[0];
     };
 
-    if (loading) return <PlaceholderItemWrapper index={index} />;
+    if (loading) return <ShowListItemPlaceholder index={index} />;
 
     if (!loading && showDetails)
         return (

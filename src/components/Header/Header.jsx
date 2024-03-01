@@ -1,16 +1,49 @@
-import { Link } from 'expo-router';
-import { Avatar, Blur, Location, Logo, NavigationHeader, Wrapper } from './Header.styles';
+import { Link, router } from 'expo-router';
+import { Avatar, Blur, Location, HeaderIcon, NavigationHeader, Wrapper } from './Header.styles';
 import { useUserAuth } from '@/context/AuthContext';
 import { useEffect, useRef, useState } from 'react';
 import Animated, { LinearTransition } from 'react-native-reanimated';
 import SearchInput from '../SearchInput/SearchInput';
 import Switcher from '../Swticher/Switcher';
 import { useDimensions } from '@/context/DimensionsContext';
-import { Text } from 'react-native';
+import { Pressable, Text } from 'react-native';
 
 const Header = ({ route }) => {
     const { user } = useUserAuth();
     const { setHeaderDimensions } = useDimensions();
+    const [headerIconState, setHeaderIconState] = useState({
+        source: require('../../assets/icons/logo.svg'),
+        navigation: 'navigate',
+    });
+
+    useEffect(() => {
+        let newSource;
+        let newNavigation;
+        switch (route) {
+            case 'Watchlist':
+            case 'Search':
+            case 'Watched':
+                newNavigation = 'navigate';
+                newSource = require('../../assets/icons/logo.svg');
+                break;
+            default:
+                newNavigation = 'back';
+                newSource = require('../../assets/icons/arrow-left.svg');
+                break;
+        }
+        setHeaderIconState({
+            source: newSource,
+            navigation: newNavigation,
+        });
+    }, [route]);
+
+    const handleHeaderIconNavigation = () => {
+        if (headerIconState.navigation === 'navigate') {
+            router.navigate('/');
+        } else {
+            router.back();
+        }
+    };
 
     return (
         <Wrapper
@@ -24,9 +57,9 @@ const Header = ({ route }) => {
         >
             <Blur blurAmount={100} />
             <NavigationHeader>
-                <Link href="/">
-                    <Logo source={require('../../assets/icons/logo.svg')} />
-                </Link>
+                <Pressable onPress={handleHeaderIconNavigation}>
+                    <HeaderIcon transition={200} source={headerIconState.source} />
+                </Pressable>
                 <Location>{route}</Location>
                 <Link href="/profile">
                     <Avatar source={user.photo} />

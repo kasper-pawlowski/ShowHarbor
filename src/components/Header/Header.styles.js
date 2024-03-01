@@ -37,7 +37,7 @@ export const NavigationHeader = styled(View)`
     padding: 48px 0px 18px 0px;
 `;
 
-export const Logo = styled(Image)`
+export const HeaderIcon = styled(Image)`
     width: 30px;
     height: 30px;
 `;

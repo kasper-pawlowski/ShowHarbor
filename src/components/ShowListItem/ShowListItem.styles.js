@@ -71,17 +71,3 @@ export const RatingText = styled(Text)`
     font-size: 10px;
     color: ${(props) => props.theme.colors.white};
 `;
-
-export const PlaceholderItemWrapper = styled(Animated.View)`
-    flex: 1;
-    height: 250px;
-    background-color: #161515;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-    margin-right: ${({ index }) => (index % 2 === 0 ? '5px' : 0)};
-    margin-left: ${({ index }) => (index % 2 !== 0 ? '5px' : 0)};
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-`;

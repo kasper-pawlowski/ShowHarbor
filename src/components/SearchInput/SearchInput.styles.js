@@ -29,7 +29,7 @@ export const Icon = styled(Image)`
 export const Input = styled(TextInput)`
     flex: 1;
     color: ${(props) => props.theme.colors.white};
-    padding: 16px 20px;
+    padding: 16px 20px 16px 4px;
     border-radius: 10px;
     font-size: 18px;
     font-family: PPNeueMachina-PlainRegular;
