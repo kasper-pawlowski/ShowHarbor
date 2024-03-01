@@ -57,7 +57,17 @@ const AppLayout = () => {
     }, [location]);
 
     const bluredComponent = useMemo(() => <Blured cachePolicy="memory" source={require('../../assets/images/blured.png')} />, []);
-    const poster = useMemo(() => <Poster cachePolicy="memory" source={require('../../assets/images/poster.png')} />, []);
+    const poster = useMemo(
+        () => (
+            <Poster
+                cachePolicy="memory"
+                source={{
+                    uri: 'https://images.unsplash.com/photo-1708681847580-aafa143b4598?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                }}
+            />
+        ),
+        []
+    );
 
     if (!user) {
         return <Redirect href="/sign-in" />;

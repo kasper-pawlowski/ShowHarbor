@@ -16,18 +16,16 @@ export const Wrapper = styled(View)`
     flex-direction: row;
 `;
 
-export const BlurWrapper = styled(View)`
+export const TransparentImage = styled(Image)`
     position: absolute;
-    z-index: -1;
-    flex: 1;
-    /* background-color: blue; */
     width: 100%;
     height: 100%;
 `;
 
 export const Blur = styled(BlurView)`
-    flex: 1;
-    z-index: -2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 `;
 
 export const NavPressable = styled(Pressable)`

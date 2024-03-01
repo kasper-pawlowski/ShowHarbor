@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Blur, NavPressable, Label, Wrapper, Icon, BlurWrapper } from './Navbar.styles';
+import { Blur, NavPressable, Label, Wrapper, Icon, BlurWrapper, TransparentImage } from './Navbar.styles';
 import { useDimensions } from '@/context/DimensionsContext';
 import { useEffect } from 'react';
 
@@ -15,10 +15,7 @@ const Navbar = ({ route }) => {
                 });
             }}
         >
-            <BlurWrapper>
-                <Blur blurAmount={50}></Blur>
-            </BlurWrapper>
-
+            <Blur blurAmount={10} blurType="dark" />
             <NavPressable onPress={() => router.push('/')} android_ripple={{ color: '#00ff22' }}>
                 <Icon tintColor={route === 'Watchlist' ? '#37D67A' : '#848484'} source={require('../../assets/icons/save-grey.svg')} />
                 <Label label="Watchlist" route={route}>
