@@ -12,10 +12,12 @@ export const Wrapper = styled(View)`
     justify-content: center;
     padding: 20px 0 40px 0;
     background-color: #8b151565;
-    border: 1px solid green;
+    overflow: hidden;
 `;
 
 export const Blur = styled(BlurView)`
-    width: 100px;
+    position: absolute;
+    width: 100%;
     height: 100px;
+    bottom: 0;
 `;
