@@ -6,9 +6,9 @@ import { useLocalSearchParams } from 'expo-router';
 const Show = () => {
     const item = useLocalSearchParams();
 
-    useEffect(() => {
-        console.log('item', item);
-    }, [item]);
+    // useEffect(() => {
+    //     console.log('item', item);
+    // }, [item]);
 
     return (
         <Wrapper>
