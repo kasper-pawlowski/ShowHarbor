@@ -6,17 +6,14 @@ import ShowListItemPlaceholder from '@/components/ShowListItemPlaceholder/ShowLi
 import axios from 'axios';
 import { router } from 'expo-router';
 import { useDimensions } from '@/context/DimensionsContext';
+import ShowView from '../ShowView/ShowView';
 
 const ShowListItem = ({ item, index }) => {
     const [showDetails, setShowDetails] = useState();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [isImageLoaded, setIsImageLoaded] = useState(false);
     const { searchValue, setSearchValue } = useDimensions();
-
-    const handleImageLoad = () => {
-        setIsImageLoaded(true);
-    };
+    const [isShowViewOpen, setIsShowViewOpen] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -49,7 +46,8 @@ const ShowListItem = ({ item, index }) => {
     };
 
     const tapHandler = () => {
-        router.push({ pathname: '/show', params: { showDetails, searchValue } });
+        // router.push({ pathname: '/show', params: { showDetails, searchValue } });
+        setIsShowViewOpen(true);
     };
 
     const longPress = Gesture.LongPress()
@@ -93,32 +91,37 @@ const ShowListItem = ({ item, index }) => {
 
     if (!loading && showDetails)
         return (
-            <GestureDetector gesture={composed}>
-                <ItemWrapper index={index} style={animatedStyles} entering={FadeIn.duration(200)} exiting={FadeOut.duration(200)}>
-                    <Poster source={`https://image.tmdb.org/t/p/w342${item.poster_path}`} recyclingKey={`${item.id}`} onLoad={handleImageLoad} />
-                    <GradientOverlay colors={['transparent', '#000000dd']} locations={[0, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} />
+            <>
+                <GestureDetector gesture={composed}>
+                    <ItemWrapper index={index} style={animatedStyles} entering={FadeIn.duration(200)} exiting={FadeOut.duration(200)}>
+                        <Poster source={`https://image.tmdb.org/t/p/w342${item.poster_path}`} recyclingKey={`${item.id}`} />
+                        <GradientOverlay colors={['transparent', '#000000dd']} locations={[0, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} />
 
-                    <Title>{item.name ? item.name : item.title ? item.title : 'shit'}</Title>
-                    <InfoWrapper>
-                        {showDetails.genres.length ? <InfoText>{showDetails.genres[0].name}</InfoText> : <></>}
-                        {showDetails.genres.length ? <InfoText>·</InfoText> : <></>}
-                        {item.media_type === 'movie' && <InfoText>{formatRuntime(showDetails.runtime)}</InfoText>}
-                        {item.media_type === 'tv' && (
-                            <InfoText>{`${showDetails.number_of_seasons} ${showDetails.number_of_seasons >= 1 ? 'seasons' : 'seasons'}`}</InfoText>
+                        <Title>{item.name ? item.name : item.title ? item.title : 'shit'}</Title>
+                        <InfoWrapper>
+                            {showDetails.genres.length ? <InfoText>{showDetails.genres[0].name}</InfoText> : <></>}
+                            {showDetails.genres.length ? <InfoText>·</InfoText> : <></>}
+                            {item.media_type === 'movie' && <InfoText>{formatRuntime(showDetails.runtime)}</InfoText>}
+                            {item.media_type === 'tv' && (
+                                <InfoText>{`${showDetails.number_of_seasons} ${
+                                    showDetails.number_of_seasons >= 1 ? 'seasons' : 'seasons'
+                                }`}</InfoText>
+                            )}
+                            <InfoText>·</InfoText>
+                            {item.media_type === 'movie' && <InfoText>{getYearFromDate(showDetails.release_date)}</InfoText>}
+                            {item.media_type === 'tv' && <InfoText>{getYearFromDate(showDetails.first_air_date)}</InfoText>}
+                        </InfoWrapper>
+                        {showDetails.vote_average ? (
+                            <RatingWrapper>
+                                <RatingText>{showDetails.vote_average.toFixed(1)}</RatingText>
+                            </RatingWrapper>
+                        ) : (
+                            <></>
                         )}
-                        <InfoText>·</InfoText>
-                        {item.media_type === 'movie' && <InfoText>{getYearFromDate(showDetails.release_date)}</InfoText>}
-                        {item.media_type === 'tv' && <InfoText>{getYearFromDate(showDetails.first_air_date)}</InfoText>}
-                    </InfoWrapper>
-                    {showDetails.vote_average ? (
-                        <RatingWrapper>
-                            <RatingText>{showDetails.vote_average.toFixed(1)}</RatingText>
-                        </RatingWrapper>
-                    ) : (
-                        <></>
-                    )}
-                </ItemWrapper>
-            </GestureDetector>
+                    </ItemWrapper>
+                </GestureDetector>
+                {/* {isShowViewOpen && <ShowView showDetails={showDetails} />} */}
+            </>
         );
 };
 
